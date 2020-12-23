@@ -7,12 +7,15 @@
     app:startDestination="@id/enterAccountFragment">
     <fragment
         android:id="@+id/enterAccountFragment"
-        android:name="com.artem.coffeeshop.presentation.account.ViewModelAccount.EnterAccountFragment"
+        android:name="com.artem.coffeeshop.presentation.account.viewModelAccount.EnterAccountFragment"
         android:label="fragment_enter_account"
         tools:layout="@layout/fragment_enter_account" >
         <action
             android:id="@+id/action_enterAccountFragment_to_createAccountFragment"
-            app:destination="@id/createAccountFragment" />
+            app:destination="@id/createAccountFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:launchSingleTop="false" />
     </fragment>
 
     <fragment

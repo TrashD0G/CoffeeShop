@@ -1,53 +1,98 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.account.CreateAccountFragment"
+    android:orientation="vertical">
 
-    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <data>
-        <variable
-            name="TextViewMessage"
-            type="String" />
-
-    </data>
-
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            tools:context=".presentation.account.CreateAccountFragment">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="24sp"
+                android:text="Регистрация"
+                android:gravity="bottom|center"/>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_weight="1"
+                >
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:text="В фрагменте"
-                    android:textSize="24sp"
-
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:text="Email:"
                     android:gravity="center" />
 
-
-                <TextView
-                    android:id="@+id/createTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-
-                    android:text=""
-                    android:textSize="24sp"
-                    android:gravity="center" />
+                <EditText
+                    android:layout_width="280dp"
+                    android:layout_height="40dp"
+                    android:hint="логин, email, номер телефона"
+                    android:layout_gravity=""
+                    />
 
 
             </LinearLayout>
 
-        </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <EditText
+                    android:layout_width="280dp"
+                    android:layout_height="40dp"
+                    android:hint="пароль"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            >
+
+            <Button
+                android:layout_width="160dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10dp"
+                android:text="Создать аккаунт" />
 
 
 
 
-</layout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</FrameLayout>
+
+
+
+
