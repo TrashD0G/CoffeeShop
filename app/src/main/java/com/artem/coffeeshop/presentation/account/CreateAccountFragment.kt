@@ -5,11 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import com.artem.coffeeshop.R
-import com.artem.coffeeshop.databinding.FragmentCreateAccountBinding
-import com.artem.coffeeshop.databinding.FragmentCreateAccountBinding.inflate
-import com.artem.coffeeshop.presentation.account.viewModelAccount.ViewModelAccount
+
 
 
 
@@ -21,7 +18,7 @@ class  CreateAccountFragment : Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?
     ): View? {
-        
+
         return inflater.inflate(R.layout.fragment_create_account, container, false)
     }
 

@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.artem.coffeeshop.R
-import com.artem.coffeeshop.databinding.FragmentCreateAccountBinding
 import com.artem.coffeeshop.databinding.FragmentEnterAccountBinding
 
 
