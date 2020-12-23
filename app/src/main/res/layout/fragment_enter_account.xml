@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.account.ViewModelAccount.EnterAccountFragment">
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="vertical">
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_weight="1">
+
+         <TextView
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:textSize="24sp"
+             android:text="Вход в Аккаунт"
+             android:gravity="bottom|center"
+             />
+
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_weight="1"
+         android:orientation="vertical">
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="0dp"
+             android:orientation="horizontal"
+             android:gravity="center"
+             android:layout_weight="1"
+             >
+
+             <EditText
+                 android:layout_width="280dp"
+                 android:layout_height="40dp"
+                 android:hint="логин, email, номер телефона"
+                 />
+
+         </LinearLayout>
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="0dp"
+             android:gravity="center"
+             android:layout_weight="1">
+
+             <EditText
+                 android:layout_width="280dp"
+                 android:layout_height="40dp"
+                 android:hint="пароль"/>
+
+         </LinearLayout>
+
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:orientation="vertical"
+         android:gravity="center"
+         android:layout_weight="1"
+         >
+
+         <Button
+             android:layout_width="160dp"
+             android:layout_height="60dp"
+             android:layout_marginBottom="10dp"
+             android:text="Вход"
+             />
+
+         <Button
+             android:id="@+id/buttonRegister"
+             android:layout_width="160dp"
+             android:layout_height="60dp"
+             android:text="Регистрация"/>
+
+
+     </LinearLayout>
+
+
+
+ </LinearLayout>
+
+
+
+
+</FrameLayout>
