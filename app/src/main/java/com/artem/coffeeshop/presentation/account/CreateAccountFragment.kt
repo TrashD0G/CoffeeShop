@@ -5,13 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.artem.coffeeshop.R
-import com.artem.coffeeshop.presentation.account.ViewModelAccount.ViewModelAccount
-
+import com.artem.coffeeshop.databinding.FragmentCreateAccountBinding
+import com.artem.coffeeshop.databinding.FragmentEnterAccountBinding
 
 
 class  CreateAccountFragment : Fragment() {
+
+    private var fragmentCreateAccountBinding: FragmentCreateAccountBinding? = null
 
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -19,17 +21,26 @@ class  CreateAccountFragment : Fragment() {
                               savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_create_account, container, false)
+        fragmentCreateAccountBinding = FragmentCreateAccountBinding.inflate(inflater, container, false)
+
+        return fragmentCreateAccountBinding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val model = ViewModelProvider(requireActivity()).get(ViewModelAccount::class.java)
 
 
+        fragmentCreateAccountBinding?.buttonBack?.setOnClickListener {
+            view.findNavController().navigate(R.id.action_createAccountFragment_to_enterAccountFragment)
 
+        }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        fragmentCreateAccountBinding = null
     }
 
 }
