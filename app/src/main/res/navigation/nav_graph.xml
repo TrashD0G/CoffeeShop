@@ -15,7 +15,9 @@
             app:destination="@id/createAccountFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
-            app:launchSingleTop="false" />
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <fragment
@@ -25,6 +27,10 @@
         tools:layout="@layout/fragment_create_account">
         <action
             android:id="@+id/action_createAccountFragment_to_enterAccountFragment"
-            app:destination="@id/enterAccountFragment" />
+            app:destination="@id/enterAccountFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 </navigation>

@@ -14,22 +14,22 @@
      <LinearLayout
          android:layout_width="match_parent"
          android:layout_height="0dp"
-         android:layout_weight="1">
+         android:layout_weight="0.3">
 
          <TextView
+             android:id="@+id/textViewHeading"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:textSize="24sp"
-             android:text="Вход в Аккаунт"
-             android:gravity="bottom|center"
-             />
+             android:text="@string/text_view_heading_enter_account"
+             android:gravity="center"/>
 
      </LinearLayout>
 
      <LinearLayout
          android:layout_width="match_parent"
          android:layout_height="0dp"
-         android:layout_weight="1"
+         android:layout_weight="0.5"
          android:orientation="vertical">
 
          <LinearLayout
@@ -37,14 +37,13 @@
              android:layout_height="0dp"
              android:orientation="horizontal"
              android:gravity="center"
-             android:layout_weight="1"
-             >
+             android:layout_weight="1">
 
              <EditText
+                 android:id="@+id/editTextAccountLogin"
                  android:layout_width="280dp"
                  android:layout_height="40dp"
-                 android:hint="логин, email, номер телефона"
-                 />
+                 android:hint="@string/edit_text_account_login_enter_account"/>
 
          </LinearLayout>
 
@@ -55,9 +54,11 @@
              android:layout_weight="1">
 
              <EditText
+                 android:id="@+id/editTextAccountPassword"
                  android:layout_width="280dp"
                  android:layout_height="40dp"
-                 android:hint="пароль"/>
+                 android:hint="@string/edit_text_account_password_enter_account"
+                 android:inputType="textPassword"/>
 
          </LinearLayout>
 
@@ -68,25 +69,23 @@
          android:layout_height="0dp"
          android:orientation="vertical"
          android:gravity="center"
-         android:layout_weight="1"
-         >
+         android:layout_weight="0.5">
 
          <Button
+             android:id="@+id/buttonEnter"
              android:layout_width="160dp"
              android:layout_height="60dp"
              android:layout_marginBottom="10dp"
-             android:text="Вход"
-             />
+             android:text="@string/button_enter_enter_account"/>
 
          <Button
              android:id="@+id/buttonRegister"
              android:layout_width="160dp"
              android:layout_height="60dp"
-             android:text="Регистрация"/>
+             android:text="@string/button_register_enter_account"/>
 
 
      </LinearLayout>
-
 
 
  </LinearLayout>
