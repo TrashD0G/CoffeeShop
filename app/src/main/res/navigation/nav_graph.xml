@@ -7,7 +7,7 @@
     app:startDestination="@id/enterAccountFragment">
     <fragment
         android:id="@+id/enterAccountFragment"
-        android:name="com.artem.coffeeshop.presentation.account.viewModelAccount.EnterAccountFragment"
+        android:name="com.artem.coffeeshop.presentation.account.EnterAccountFragment"
         android:label="fragment_enter_account"
         tools:layout="@layout/fragment_enter_account" >
         <action
