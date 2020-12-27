@@ -42,14 +42,12 @@ class  CreateAccountFragment : Fragment() {
 
         val editTextEmailData: EditText? = fragmentCreateAccountBinding?.editTextEmailCreateAccount
         val editTextPasswordData: EditText? = fragmentCreateAccountBinding?.editTextPasswordCreateAccount
-        val editTextPhoneNumberData: EditText? = fragmentCreateAccountBinding?.editTextPhoneNumberCreateAccount
         val editTextFirstNameData: EditText? = fragmentCreateAccountBinding?.editTextFirstNameCreateAccount
         val editTextLastNameData: EditText? = fragmentCreateAccountBinding?.editTextLastNameCreateAccount
 
 
         viewModel.emailValidate.observe(viewLifecycleOwner,{ if (!it) editTextEmailData?.error = "Ошибка ввода!" })
         viewModel.passwordValidate.observe(viewLifecycleOwner,{ if (!it) editTextPasswordData?.error = "Ошибка ввода!" })
-        viewModel.phoneNumberValidate.observe(viewLifecycleOwner,{if (!it) editTextPhoneNumberData?.error = "Ошибка ввода!"})
         viewModel.firstName.observe(viewLifecycleOwner,{if (!it) editTextFirstNameData?.error = "Ошибка ввода!"})
         viewModel.lastName.observe(viewLifecycleOwner,{if (!it) editTextLastNameData?.error = "Ошибка ввода!"})
 
@@ -57,7 +55,6 @@ class  CreateAccountFragment : Fragment() {
         fragmentCreateAccountBinding?.buttonCreate?.setOnClickListener { viewModel.checkInput(
                 editTextEmailData?.text.toString(),
                 editTextPasswordData?.text.toString(),
-                editTextPhoneNumberData?.text.toString(),
                 editTextFirstNameData?.text.toString(),
                 editTextLastNameData?.text.toString()) }
 

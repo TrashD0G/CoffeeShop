@@ -45,16 +45,21 @@ class ViewModelAccount : ViewModel() {
 */
 
 
-     fun checkInput(emailValue:String,passwordValue:String,phoneNumberValue:String,firstNameValue:String,lastNameValue:String) {
+     fun checkInput(emailValue:String,passwordValue:String,firstNameValue:String,lastNameValue:String) {
 
          validateEmail(emailValue)
          validatePassword(passwordValue)
-         validatePhoneNumber(phoneNumberValue)
          validateFirstName(firstNameValue)
          validateLastName(lastNameValue)
 
+         if (_emailValidate.value == true && _passwordValidate.value == true && _firstName.value == true && _lastName.value == true) {
 
+             Log.i(TAG,"All Data is correct!")
 
+             //Создание аккаунта в Firebase
+             //Проверка на занятый Email если все нормально
+             //Переход к входу в аккаунт
+         }
     }
 
 
@@ -91,22 +96,7 @@ class ViewModelAccount : ViewModel() {
 
     }
 
-    private fun validatePhoneNumber(phoneNumberValue: String){
 
-        if (phoneNumberValue.isEmpty()){
-            Log.i(TAG, "Phone number is empty!$phoneNumberValue")
-            _phoneNumberValidate.value = false
-
-        } else if (!Patterns.PHONE.matcher(phoneNumberValue).matches()){
-            Log.i(TAG,"Phone number not Pattern!")
-            _phoneNumberValidate.value = false
-        }
-
-        else{
-            Log.i(TAG,"Phone number is correct!")
-            _phoneNumberValidate.value = true
-        }
-    }
 
     private fun validateFirstName(firstNameValue: String){
 
