@@ -49,6 +49,9 @@ class  CreateAccountFragment : Fragment() {
 
         viewModel.emailValidate.observe(viewLifecycleOwner,{ if (!it) editTextEmailData?.error = "Ошибка ввода!" })
         viewModel.passwordValidate.observe(viewLifecycleOwner,{ if (!it) editTextPasswordData?.error = "Ошибка ввода!" })
+        viewModel.phoneNumberValidate.observe(viewLifecycleOwner,{if (!it) editTextPhoneNumberData?.error = "Ошибка ввода!"})
+        viewModel.firstName.observe(viewLifecycleOwner,{if (!it) editTextFirstNameData?.error = "Ошибка ввода!"})
+        viewModel.lastName.observe(viewLifecycleOwner,{if (!it) editTextLastNameData?.error = "Ошибка ввода!"})
 
 
         fragmentCreateAccountBinding?.buttonCreate?.setOnClickListener { viewModel.checkInput(

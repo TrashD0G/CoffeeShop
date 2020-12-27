@@ -17,6 +17,15 @@ class ViewModelAccount : ViewModel() {
     private val _passwordValidate = MutableLiveData<Boolean>()
     val passwordValidate = _passwordValidate
 
+    private val _phoneNumberValidate = MutableLiveData<Boolean>()
+    val phoneNumberValidate = _phoneNumberValidate
+
+    private val _firstName = MutableLiveData<Boolean>()
+    val firstName = _firstName
+
+    private val _lastName = MutableLiveData<Boolean>()
+    val lastName = _lastName
+
 
 /*
     private val _email = MutableLiveData<String>()
@@ -82,11 +91,67 @@ class ViewModelAccount : ViewModel() {
 
     }
 
-    private fun validatePhoneNumber(phoneNumberValue: String){}
+    private fun validatePhoneNumber(phoneNumberValue: String){
 
-    private fun validateFirstName(firstNameValue: String){}
+        if (phoneNumberValue.isEmpty()){
+            Log.i(TAG, "Phone number is empty!$phoneNumberValue")
+            _phoneNumberValidate.value = false
 
-    private fun validateLastName(lastNameValue: String){}
+        } else if (!Patterns.PHONE.matcher(phoneNumberValue).matches()){
+            Log.i(TAG,"Phone number not Pattern!")
+            _phoneNumberValidate.value = false
+        }
+
+        else{
+            Log.i(TAG,"Phone number is correct!")
+            _phoneNumberValidate.value = true
+        }
+    }
+
+    private fun validateFirstName(firstNameValue: String){
+
+        val FIRST_NAME_PATTERN:Pattern = Pattern.compile("^" +
+                "(?=.*[а-яА-Я])" +
+                "(?=\\S+$)" +
+                ".{2,20}"+
+                "$")
+
+        if (firstNameValue.isEmpty()){
+            Log.i(TAG, "First name is empty!$firstNameValue")
+            _firstName.value = false
+
+        } else if (!FIRST_NAME_PATTERN.matcher(firstNameValue).matches()){
+            Log.i(TAG,"first name not Pattern!")
+            _firstName.value = false
+        }
+
+        else{
+            Log.i(TAG,"first name is correct!")
+            _firstName.value = true
+        }
+    }
+
+    private fun validateLastName(lastNameValue: String){
+        val LAST_NAME_PATTERN:Pattern = Pattern.compile("^" +
+                "(?=.*[а-яА-Я])" +
+                "(?=\\S+$)" +
+                ".{2,20}"+
+                "$")
+
+        if (lastNameValue.isEmpty()){
+            Log.i(TAG, "Last name is empty!$lastNameValue")
+            _lastName.value = false
+
+        } else if (!LAST_NAME_PATTERN.matcher(lastNameValue).matches()){
+            Log.i(TAG,"Last name not Pattern!")
+            _lastName.value = false
+        }
+
+        else{
+            Log.i(TAG,"Last name is correct!")
+            _lastName.value = true
+        }
+    }
 
 
 }
