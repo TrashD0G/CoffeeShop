@@ -6,10 +6,11 @@ import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.artem.coffeeshop.TAG
+import com.artem.coffeeshop.domain.CreateAccountUseCase
 
 import java.util.regex.Pattern
 
-class ViewModelAccount : ViewModel() {
+class ViewModelAccount(private val createAccount:CreateAccountUseCase) : ViewModel() {
 
     private  val _emailValidate = MutableLiveData<Boolean>()
     val emailValidate = _emailValidate
@@ -17,8 +18,6 @@ class ViewModelAccount : ViewModel() {
     private val _passwordValidate = MutableLiveData<Boolean>()
     val passwordValidate = _passwordValidate
 
-    private val _phoneNumberValidate = MutableLiveData<Boolean>()
-    val phoneNumberValidate = _phoneNumberValidate
 
     private val _firstName = MutableLiveData<Boolean>()
     val firstName = _firstName
@@ -27,22 +26,6 @@ class ViewModelAccount : ViewModel() {
     val lastName = _lastName
 
 
-/*
-    private val _email = MutableLiveData<String>()
-    val email: LiveData<String> = _email
-
-    private val _password = MutableLiveData<String>()
-    val password: LiveData<String> = _password
-
-    private val _phoneNumber = MutableLiveData<String>()
-    val phoneNumber: LiveData<String> = _phoneNumber
-
-    private val _firsName = MutableLiveData<String>()
-    val firstName: LiveData<String> = _firsName
-
-    private val _lastName = MutableLiveData<String>()
-    val lastName: LiveData<String> = _lastName
-*/
 
 
      fun checkInput(emailValue:String,passwordValue:String,firstNameValue:String,lastNameValue:String) {
