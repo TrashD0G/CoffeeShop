@@ -1,4 +1,4 @@
-package com.artem.coffeeshop.presentation.account.viewModelAccount
+package com.artem.coffeeshop.presentation.account
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -20,8 +20,8 @@ class EnterAccountFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-        fragmentEnterAccountBinding = FragmentEnterAccountBinding.inflate(inflater, container, false)
+        fragmentEnterAccountBinding =
+            FragmentEnterAccountBinding.inflate(inflater, container, false)
 
         return fragmentEnterAccountBinding?.root
     }
@@ -32,7 +32,9 @@ class EnterAccountFragment : Fragment() {
 
 
         fragmentEnterAccountBinding?.buttonRegister?.setOnClickListener {
-            view.findNavController().navigate(R.id.action_enterAccountFragment_to_createAccountFragment) }
+            view.findNavController()
+                .navigate(R.id.action_enterAccountFragment_to_createAccountFragment)
+        }
 
     }
 
