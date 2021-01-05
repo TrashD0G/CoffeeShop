@@ -2,7 +2,6 @@ package com.artem.coffeeshop
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.artem.coffeeshop.R
 
 const val TAG = "MyTag"
 class MainActivity : AppCompatActivity() {
