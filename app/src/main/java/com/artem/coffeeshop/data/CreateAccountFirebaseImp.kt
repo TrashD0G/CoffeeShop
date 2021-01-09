@@ -1,8 +1,8 @@
 package com.artem.coffeeshop.data
 
 import android.util.Log
-import com.artem.coffeeshop.TAG
 import com.artem.coffeeshop.domain.CreateUserFirebase
+import com.artem.coffeeshop.presentation.mainScreen.TAG
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException

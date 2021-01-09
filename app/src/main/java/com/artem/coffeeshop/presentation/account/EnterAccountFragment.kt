@@ -32,8 +32,7 @@ class EnterAccountFragment : Fragment() {
 
 
         fragmentEnterAccountBinding?.buttonRegister?.setOnClickListener {
-            view.findNavController()
-                .navigate(R.id.action_enterAccountFragment_to_createAccountFragment)
+            view.findNavController().navigate(R.id.action_enterAccountFragment_to_createAccountFragment)
         }
 
     }

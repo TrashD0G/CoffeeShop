@@ -56,8 +56,7 @@ class CreateAccountFragment : Fragment(), CoroutineScope {
             fragmentCreateAccountBinding?.editTextPasswordCreateAccount
         val editTextFirstNameData: EditText? =
             fragmentCreateAccountBinding?.editTextFirstNameCreateAccount
-        val editTextLastNameData: EditText? =
-            fragmentCreateAccountBinding?.editTextLastNameCreateAccount
+
 
 
         viewModel.emailValidate.observe(viewLifecycleOwner,
@@ -66,14 +65,12 @@ class CreateAccountFragment : Fragment(), CoroutineScope {
             { if (!it) editTextPasswordData?.error = "Ошибка ввода!" })
         viewModel.firstName.observe(viewLifecycleOwner,
             { if (!it) editTextFirstNameData?.error = "Ошибка ввода!" })
-        viewModel.lastName.observe(viewLifecycleOwner,
-            { if (!it) editTextLastNameData?.error = "Ошибка ввода!" })
+
 
         viewModel.createAccountResult.observe(viewLifecycleOwner, {
             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
             if (it == "Аккаунт создан!") {
-                view.findNavController()
-                    .navigate(R.id.action_createAccountFragment_to_enterAccountFragment)
+                view.findNavController().navigate(R.id.action_createAccountFragment_to_enterAccountFragment)
             }
         })
 
@@ -85,14 +82,13 @@ class CreateAccountFragment : Fragment(), CoroutineScope {
                 editTextEmailData?.text.toString(),
                 editTextPasswordData?.text.toString(),
                 editTextFirstNameData?.text.toString(),
-                editTextLastNameData?.text.toString()
+
             )
 
         }
 
         fragmentCreateAccountBinding?.buttonBack?.setOnClickListener {
-            view.findNavController()
-                .navigate(R.id.action_createAccountFragment_to_enterAccountFragment)
+            view.findNavController().navigate(R.id.action_createAccountFragment_to_enterAccountFragment)
         }
 
     }

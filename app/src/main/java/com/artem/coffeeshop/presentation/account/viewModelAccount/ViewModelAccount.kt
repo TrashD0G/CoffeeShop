@@ -5,8 +5,8 @@ import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.artem.coffeeshop.TAG
 import com.artem.coffeeshop.domain.CreateAccountUseCase
+import com.artem.coffeeshop.presentation.mainScreen.TAG
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,8 +22,7 @@ class ViewModelAccount(private val createAccount: CreateAccountUseCase) : ViewMo
     val passwordValidate = _passwordValidate
     private val _firstName = MutableLiveData<Boolean>()
     val firstName = _firstName
-    private val _lastName = MutableLiveData<Boolean>()
-    val lastName = _lastName
+
 
     private val _createAccountResult = MutableLiveData<String>()
     val createAccountResult = _createAccountResult
@@ -37,15 +36,14 @@ class ViewModelAccount(private val createAccount: CreateAccountUseCase) : ViewMo
         emailValue: String,
         passwordValue: String,
         firstNameValue: String,
-        lastNameValue: String
     ) {
 
         validateEmail(emailValue)
         validatePassword(passwordValue)
         validateFirstName(firstNameValue)
-        validateLastName(lastNameValue)
 
-        if (_emailValidate.value == true && _passwordValidate.value == true && _firstName.value == true && _lastName.value == true) {
+
+        if (_emailValidate.value == true && _passwordValidate.value == true && _firstName.value == true) {
 
             Log.i(TAG, "All Data is correct!")
 
@@ -123,27 +121,7 @@ class ViewModelAccount(private val createAccount: CreateAccountUseCase) : ViewMo
         }
     }
 
-    private fun validateLastName(lastNameValue: String) {
-        val LAST_NAME_PATTERN: Pattern = Pattern.compile(
-            "^" +
-                    "(?=.*[а-яА-Я])" +
-                    "(?=\\S+$)" +
-                    ".{2,20}" +
-                    "$"
-        )
 
-        if (lastNameValue.isEmpty()) {
-            Log.i(TAG, "Last name is empty!$lastNameValue")
-            _lastName.value = false
-
-        } else if (!LAST_NAME_PATTERN.matcher(lastNameValue).matches()) {
-            Log.i(TAG, "Last name not Pattern!")
-            _lastName.value = false
-        } else {
-            Log.i(TAG, "Last name is correct!")
-            _lastName.value = true
-        }
-    }
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
