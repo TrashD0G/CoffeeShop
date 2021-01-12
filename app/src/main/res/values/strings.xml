@@ -18,4 +18,8 @@
     <string name="edit_text_last_name_create_account">Фамилия</string>
     <string name="button_create_create_account">Создать</string>
     <string name="button_back_create_account">Назад</string>
+
+    <!-- drawerlayout-->
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>

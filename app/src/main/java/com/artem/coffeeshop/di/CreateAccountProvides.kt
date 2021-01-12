@@ -2,12 +2,12 @@ package com.artem.coffeeshop.di
 
 import com.artem.coffeeshop.data.CreateAccountFirebaseImp
 import com.artem.coffeeshop.domain.CreateAccountUseCase
-import com.artem.coffeeshop.presentation.account.viewModelAccount.ViewModelAccountFactory
+import com.artem.coffeeshop.presentation.account.viewModelCreateAccount.ViewModelCreateAccountFactory
 import dagger.Module
 import dagger.Provides
 
 @Module
-class CreateAccountProvedes {
+class CreateAccountProvides {
 
     @Provides
     fun provideCreateAccountUseCase(createAccountFirebase: CreateAccountFirebaseImp): CreateAccountUseCase {
@@ -20,8 +20,8 @@ class CreateAccountProvedes {
     }
 
     @Provides
-    fun provideViewModelAccountFactory(createAccountUseCase: CreateAccountUseCase): ViewModelAccountFactory {
-        return ViewModelAccountFactory(createAccountUseCase)
+    fun provideViewModelAccountFactory(createAccountUseCase: CreateAccountUseCase): ViewModelCreateAccountFactory {
+        return ViewModelCreateAccountFactory(createAccountUseCase)
     }
 
 

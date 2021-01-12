@@ -13,7 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5">
+            android:layout_weight="0.6">
 
             <TextView
                 android:id="@+id/textViewHeadingCreateAccount"
@@ -28,7 +28,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1.1"
             android:orientation="vertical">
 
             <LinearLayout
@@ -77,21 +77,6 @@
                     android:layout_width="220dp"
                     android:layout_height="40dp"/>
 
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_weight="1">
-
-                <EditText
-                    android:id="@+id/editTextLastNameCreateAccount"
-                    android:hint="@string/edit_text_last_name_create_account"
-                    android:layout_width="220dp"
-                    android:layout_height="40dp"/>
 
             </LinearLayout>
 
