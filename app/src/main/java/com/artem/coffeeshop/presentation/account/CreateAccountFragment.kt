@@ -12,8 +12,8 @@ import androidx.navigation.findNavController
 import com.artem.coffeeshop.CoffeeShopApplication
 import com.artem.coffeeshop.R
 import com.artem.coffeeshop.databinding.FragmentCreateAccountBinding
-import com.artem.coffeeshop.presentation.account.viewModelAccount.ViewModelAccount
-import com.artem.coffeeshop.presentation.account.viewModelAccount.ViewModelAccountFactory
+import com.artem.coffeeshop.presentation.account.viewModelCreateAccount.ViewModelCreateAccount
+import com.artem.coffeeshop.presentation.account.viewModelCreateAccount.ViewModelCreateAccountFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
@@ -25,7 +25,7 @@ class CreateAccountFragment : Fragment(), CoroutineScope {
     private var fragmentCreateAccountBinding: FragmentCreateAccountBinding? = null
 
     @Inject
-    lateinit var viewModelFactory: ViewModelAccountFactory
+    lateinit var viewModelCreateFactory: ViewModelCreateAccountFactory
 
 
     override fun onCreateView(
@@ -44,33 +44,25 @@ class CreateAccountFragment : Fragment(), CoroutineScope {
         super.onViewCreated(view, savedInstanceState)
 
         (requireActivity().applicationContext as CoffeeShopApplication)
-            .applicationCreateAccountComponent.injectCreateAccountFragment(this)
+            .applicationAccountComponent.injectCreateAccountFragment(this)
 
-
-        val viewModel =
-            ViewModelProvider(requireActivity(), viewModelFactory).get(ViewModelAccount::class.java)
-
-
+        //data binding
         val editTextEmailData: EditText? = fragmentCreateAccountBinding?.editTextEmailCreateAccount
-        val editTextPasswordData: EditText? =
-            fragmentCreateAccountBinding?.editTextPasswordCreateAccount
-        val editTextFirstNameData: EditText? =
-            fragmentCreateAccountBinding?.editTextFirstNameCreateAccount
+        val editTextPasswordData: EditText? = fragmentCreateAccountBinding?.editTextPasswordCreateAccount
+        val editTextFirstNameData: EditText? = fragmentCreateAccountBinding?.editTextFirstNameCreateAccount
 
-
-
+        //viewModel
+        val viewModel = ViewModelProvider(requireActivity(), viewModelCreateFactory).get(ViewModelCreateAccount::class.java)
         viewModel.emailValidate.observe(viewLifecycleOwner,
             { if (!it) editTextEmailData?.error = "Ошибка ввода!" })
         viewModel.passwordValidate.observe(viewLifecycleOwner,
             { if (!it) editTextPasswordData?.error = "Ошибка ввода!" })
         viewModel.firstName.observe(viewLifecycleOwner,
             { if (!it) editTextFirstNameData?.error = "Ошибка ввода!" })
-
-
         viewModel.createAccountResult.observe(viewLifecycleOwner, {
             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
             if (it == "Аккаунт создан!") {
-                view.findNavController().navigate(R.id.action_createAccountFragment_to_enterAccountFragment)
+                view.findNavController().navigate(R.id.action_createAccountFragment_to_mainScreenActivity)
             }
         })
 
@@ -82,11 +74,9 @@ class CreateAccountFragment : Fragment(), CoroutineScope {
                 editTextEmailData?.text.toString(),
                 editTextPasswordData?.text.toString(),
                 editTextFirstNameData?.text.toString(),
-
             )
 
         }
-
         fragmentCreateAccountBinding?.buttonBack?.setOnClickListener {
             view.findNavController().navigate(R.id.action_createAccountFragment_to_enterAccountFragment)
         }

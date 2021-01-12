@@ -1,4 +1,4 @@
-package com.artem.coffeeshop.presentation.account.viewModelAccount
+package com.artem.coffeeshop.presentation.account.viewModelCreateAccount
 
 
 import android.util.Log
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import java.util.regex.Pattern
 import kotlin.coroutines.CoroutineContext
 
-class ViewModelAccount(private val createAccount: CreateAccountUseCase) : ViewModel(),
+class ViewModelCreateAccount(private val createAccount: CreateAccountUseCase) : ViewModel(),
     CoroutineScope {
 
     private val _emailValidate = MutableLiveData<Boolean>()
@@ -42,10 +42,9 @@ class ViewModelAccount(private val createAccount: CreateAccountUseCase) : ViewMo
         validatePassword(passwordValue)
         validateFirstName(firstNameValue)
 
-
         if (_emailValidate.value == true && _passwordValidate.value == true && _firstName.value == true) {
 
-            Log.i(TAG, "All Data is correct!")
+            Log.i(TAG, "Create account: All Data is correct!")
 
             launch(Dispatchers.IO) {
                 createAccount()
@@ -55,8 +54,7 @@ class ViewModelAccount(private val createAccount: CreateAccountUseCase) : ViewMo
     }
 
     private suspend fun createAccount() {
-
-        when (createAccount.createAccount(email, password)) {
+        when (createAccount.createUser(email, password)) {
             "Аккаунт создан!" -> _createAccountResult.postValue("Аккаунт создан!")
             "ERROR_EMAIL_ALREADY_IN_USE" -> _createAccountResult.postValue("Email занят!")
             "Ошибка!" -> _createAccountResult.postValue("Ошибка!")
@@ -65,11 +63,11 @@ class ViewModelAccount(private val createAccount: CreateAccountUseCase) : ViewMo
 
     private fun validateEmail(emailValue: String) {
         if (emailValue.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailValue).matches()) {
-            Log.i(TAG, "Valid Email!")
+            Log.i(TAG, "Create account: Valid Email!")
             email = emailValue
             _emailValidate.value = true
         } else {
-            Log.i(TAG, "Invalid Email!")
+            Log.i(TAG, "Create account: Invalid Email!")
             _emailValidate.value = false
         }
     }
@@ -84,14 +82,14 @@ class ViewModelAccount(private val createAccount: CreateAccountUseCase) : ViewMo
         )
 
         if (passwordValue.isEmpty()) {
-            Log.i(TAG, "Password is empty!$passwordValue")
+            Log.i(TAG, "Create account: Password is empty!$passwordValue")
             _passwordValidate.value = false
 
         } else if (!PASSWORD_PATTERN.matcher(passwordValue).matches()) {
-            Log.i(TAG, "Password too weak!")
+            Log.i(TAG, "Create account: Password too weak!")
             _passwordValidate.value = false
         } else {
-            Log.i(TAG, "Valid password!")
+            Log.i(TAG, "Create account: Valid password!")
             password = passwordValue
             _passwordValidate.value = true
         }
@@ -109,14 +107,14 @@ class ViewModelAccount(private val createAccount: CreateAccountUseCase) : ViewMo
         )
 
         if (firstNameValue.isEmpty()) {
-            Log.i(TAG, "First name is empty!$firstNameValue")
+            Log.i(TAG, "Create account: First name is empty!$firstNameValue")
             _firstName.value = false
 
         } else if (!FIRST_NAME_PATTERN.matcher(firstNameValue).matches()) {
-            Log.i(TAG, "first name not Pattern!")
+            Log.i(TAG, "Create account: first name not Pattern!")
             _firstName.value = false
         } else {
-            Log.i(TAG, "first name is correct!")
+            Log.i(TAG, "Create account: first name is correct!")
             _firstName.value = true
         }
     }

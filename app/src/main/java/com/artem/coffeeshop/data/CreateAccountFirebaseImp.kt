@@ -14,26 +14,26 @@ import kotlinx.coroutines.tasks.await
 import kotlin.coroutines.CoroutineContext
 
 
-class CreateAccountFirebaseImp() : CreateUserFirebase, CoroutineScope {
+class CreateAccountFirebaseImp : CreateUserFirebase, CoroutineScope {
 
     lateinit var auth: FirebaseAuth
-
 
     override suspend fun createUser(email: String, password: String): String {
 
         try {
             auth = Firebase.auth
             auth.createUserWithEmailAndPassword(email, password).await()
+            val user = auth.currentUser
+            Log.i(TAG, "Пользователь ${user.toString()} сооздан!")
             return "Аккаунт создан!"
 
         } catch (e: FirebaseAuthUserCollisionException) {
-            Log.i(TAG, "createUserWithEmail: Email занят! " + e.errorCode)
+            Log.i(TAG, "CreateAccountFirebaseImp: Email занят! " + e.errorCode)
             return e.errorCode
         } catch (e: FirebaseException) {
-            Log.i(TAG, "Ошибка! " + e.toString())
+            Log.i(TAG, "CreateAccountFirebaseImp: Ошибка! " + e.toString())
             return "Ошибка!"
         }
-
 
     }
 
