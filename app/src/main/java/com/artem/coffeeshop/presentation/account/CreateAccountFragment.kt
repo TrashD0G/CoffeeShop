@@ -57,7 +57,7 @@ class CreateAccountFragment : Fragment(), CoroutineScope {
             { if (!it) editTextEmailData?.error = "Ошибка ввода!" })
         viewModel.passwordValidate.observe(viewLifecycleOwner,
             { if (!it) editTextPasswordData?.error = "Ошибка ввода!" })
-        viewModel.firstName.observe(viewLifecycleOwner,
+        viewModel.firstNameValidate.observe(viewLifecycleOwner,
             { if (!it) editTextFirstNameData?.error = "Ошибка ввода!" })
         viewModel.createAccountResult.observe(viewLifecycleOwner, {
             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()

@@ -28,6 +28,7 @@ class MainScreenActivity : AppCompatActivity() {
         binding = ActivityMainScreenBinding.inflate(layoutInflater)
         val view = binding.root
 
+
         auth = Firebase.auth
         val currentUser = auth.currentUser
         val menu = binding.navView.menu
