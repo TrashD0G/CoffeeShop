@@ -44,7 +44,7 @@ class CreateAccountFragment : Fragment(), CoroutineScope {
         super.onViewCreated(view, savedInstanceState)
 
         (requireActivity().applicationContext as CoffeeShopApplication)
-            .applicationAccountComponent.injectCreateAccountFragment(this)
+            .applicationAppComponent.injectCreateAccountFragment(this)
 
         //data binding
         val editTextEmailData: EditText? = fragmentCreateAccountBinding?.editTextEmailCreateAccount

@@ -3,7 +3,7 @@ package com.artem.coffeeshop.data
 import android.util.Log
 import com.artem.coffeeshop.domain.CreateUserFirebase
 import com.artem.coffeeshop.domain.User
-import com.artem.coffeeshop.presentation.mainScreen.TAG
+import com.artem.coffeeshop.utilites.*
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -19,27 +19,25 @@ import kotlin.coroutines.CoroutineContext
 
 class CreateAccountFirebaseImp : CreateUserFirebase, CoroutineScope {
 
-    lateinit var auth: FirebaseAuth
-    private lateinit var database: DatabaseReference
 
     override suspend fun createUser(email: String, password: String, firstName: String): String {
 
         try {
-            auth = Firebase.auth
-            database = Firebase.database.reference
+            AUTH = Firebase.auth
+
 
             // создание аккаунта
-            auth.createUserWithEmailAndPassword(email, password).await()
+            AUTH.createUserWithEmailAndPassword(email, password).await()
 
 
             // добавление пользователя в бд
             val user = User(email, firstName)
-            val userId = auth.currentUser?.uid
+            val userId = CURRENT_UID
             if (userId != null) {
-                database.child("users").child(userId).setValue(user)
+                REF_DATABASE_ROOT.child(NODE_USERS).child(userId).setValue(user)
             }
 
-            Log.i(TAG, "Пользователь ${auth.currentUser?.email} сооздан!")
+            Log.i(TAG, "Пользователь ${AUTH.currentUser?.email} сооздан!")
 
             return "Аккаунт создан!"
             

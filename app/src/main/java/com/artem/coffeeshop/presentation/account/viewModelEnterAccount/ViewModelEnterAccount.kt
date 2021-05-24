@@ -5,14 +5,14 @@ import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.artem.coffeeshop.domain.EnterAccountUseCase
-import com.artem.coffeeshop.presentation.mainScreen.TAG
+import com.artem.coffeeshop.utilites.TAG
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.regex.Pattern
 import kotlin.coroutines.CoroutineContext
 
-class ViewModelEnterAccount(private val enterAccount: EnterAccountUseCase):ViewModel(),
+class ViewModelEnterAccount(private val enterAccount: EnterAccountUseCase) : ViewModel(),
     CoroutineScope {
 
     private val _emailValidate = MutableLiveData<Boolean>()
@@ -31,26 +31,26 @@ class ViewModelEnterAccount(private val enterAccount: EnterAccountUseCase):ViewM
         validateEmail(emailValue)
         validatePassword(passwordValue)
 
-        if (_emailValidate.value == true && _passwordValidate.value == true){
-            Log.i(TAG,"ViewModelEnterAccount: происходит вход в аккаунт")
+        if (_emailValidate.value == true && _passwordValidate.value == true) {
+            Log.i(TAG, "ViewModelEnterAccount: происходит вход в аккаунт")
 
-            launch(Dispatchers.IO){
+            launch(Dispatchers.IO) {
                 enterAccount()
             }
 
         }
     }
 
-    private suspend fun enterAccount(){
+    private suspend fun enterAccount() {
         when (enterAccount.enterUser(email, password)) {
             "Выполнен вход!" -> _enterAccountResult.postValue("Выполнен вход!")
-           // "ERROR_EMAIL_ALREADY_IN_USE" -> _createAccountResult.postValue("Email занят!")
             "Ошибка!" -> _enterAccountResult.postValue("Ошибка!")
         }
     }
 
-    private fun validateEmail(emailValue: String){
-        if (emailValue.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailValue).matches()){
+    private fun validateEmail(emailValue: String) {
+
+        if (emailValue.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailValue).matches()) {
             Log.i(TAG, "Enter account: Email Valid!")
             email = emailValue
             _emailValidate.value = true
@@ -61,7 +61,7 @@ class ViewModelEnterAccount(private val enterAccount: EnterAccountUseCase):ViewM
 
     }
 
-    private fun validatePassword(passwordValue: String){
+    private fun validatePassword(passwordValue: String) {
         val PASSWORD_PATTERN: Pattern = Pattern.compile(
             "^" +
                     "(?=.*[a-zA-Z])" +
@@ -69,6 +69,7 @@ class ViewModelEnterAccount(private val enterAccount: EnterAccountUseCase):ViewM
                     ".{8,16}" +
                     "$"
         )
+
 
         if (passwordValue.isEmpty()) {
             Log.i(TAG, "Enter account: Password is empty!$passwordValue")

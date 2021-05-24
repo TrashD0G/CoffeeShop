@@ -6,7 +6,7 @@ import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.artem.coffeeshop.domain.CreateAccountUseCase
-import com.artem.coffeeshop.presentation.mainScreen.TAG
+import com.artem.coffeeshop.utilites.TAG
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

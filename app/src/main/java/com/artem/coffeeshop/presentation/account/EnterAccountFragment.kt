@@ -14,7 +14,7 @@ import com.artem.coffeeshop.R
 import com.artem.coffeeshop.databinding.FragmentEnterAccountBinding
 import com.artem.coffeeshop.presentation.account.viewModelEnterAccount.ViewModelEnterAccount
 import com.artem.coffeeshop.presentation.account.viewModelEnterAccount.ViewModelEnterAccountFactory
-import com.artem.coffeeshop.presentation.mainScreen.TAG
+import com.artem.coffeeshop.utilites.TAG
 import javax.inject.Inject
 
 
@@ -40,15 +40,15 @@ class EnterAccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        // Dagger inject
         (requireActivity().applicationContext as CoffeeShopApplication)
-            .applicationAccountComponent.injectEnterAccountFragment(this)
+            .applicationAppComponent.injectEnterAccountFragment(this)
 
-        //data binding
+        // Data binding
         val editTextEmailData = fragmentEnterAccountBinding?.editTextAccountLogin
         val editTextPasswordData = fragmentEnterAccountBinding?.editTextAccountPassword
 
-        //viewModel
+        // ViewModel
         val viewModel = ViewModelProvider(requireActivity(), viewModelEnterFactory).get(ViewModelEnterAccount::class.java)
         viewModel.emailValidate.observe(viewLifecycleOwner,
             { if (!it) editTextEmailData?.error = "Ошибка ввода!" })

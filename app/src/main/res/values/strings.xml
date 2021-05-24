@@ -22,4 +22,6 @@
     <!-- drawerlayout-->
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="product_name">Название товара</string>
+    <string name="product_URL">Картинка</string>
 </resources>
