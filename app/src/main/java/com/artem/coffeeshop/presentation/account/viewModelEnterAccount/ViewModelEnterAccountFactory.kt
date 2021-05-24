@@ -13,5 +13,4 @@ class ViewModelEnterAccountFactory(private val enterAccount: EnterAccountUseCase
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 
-
 }

@@ -1,16 +1,16 @@
 package com.artem.coffeeshop
 
 import android.app.Application
-import com.artem.coffeeshop.di.AccountComponent
-import com.artem.coffeeshop.di.DaggerAccountComponent
+import com.artem.coffeeshop.di.AppComponent
+import com.artem.coffeeshop.di.DaggerAppComponent
 
 class CoffeeShopApplication : Application() {
 
-    lateinit var applicationAccountComponent: AccountComponent
+    lateinit var applicationAppComponent: AppComponent
         private set
 
     override fun onCreate() {
         super.onCreate()
-        applicationAccountComponent = DaggerAccountComponent.create()
+        applicationAppComponent = DaggerAppComponent.create()
     }
 }

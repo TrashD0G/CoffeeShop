@@ -6,7 +6,7 @@ import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.artem.coffeeshop.domain.CreateAccountUseCase
-import com.artem.coffeeshop.presentation.mainScreen.TAG
+import com.artem.coffeeshop.utilites.TAG
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,8 +20,8 @@ class ViewModelCreateAccount(private val createAccount: CreateAccountUseCase) : 
     val emailValidate = _emailValidate
     private val _passwordValidate = MutableLiveData<Boolean>()
     val passwordValidate = _passwordValidate
-    private val _firstName = MutableLiveData<Boolean>()
-    val firstName = _firstName
+    private val _firstNameValidate = MutableLiveData<Boolean>()
+    val firstNameValidate = _firstNameValidate
 
 
     private val _createAccountResult = MutableLiveData<String>()
@@ -30,6 +30,7 @@ class ViewModelCreateAccount(private val createAccount: CreateAccountUseCase) : 
 
     lateinit var email: String
     lateinit var password: String
+    lateinit var firstName: String
 
 
     fun checkInput(
@@ -42,7 +43,7 @@ class ViewModelCreateAccount(private val createAccount: CreateAccountUseCase) : 
         validatePassword(passwordValue)
         validateFirstName(firstNameValue)
 
-        if (_emailValidate.value == true && _passwordValidate.value == true && _firstName.value == true) {
+        if (_emailValidate.value == true && _passwordValidate.value == true && _firstNameValidate.value == true) {
 
             Log.i(TAG, "Create account: All Data is correct!")
 
@@ -54,7 +55,7 @@ class ViewModelCreateAccount(private val createAccount: CreateAccountUseCase) : 
     }
 
     private suspend fun createAccount() {
-        when (createAccount.createUser(email, password)) {
+        when (createAccount.createUser(email, password, firstName)) {
             "Аккаунт создан!" -> _createAccountResult.postValue("Аккаунт создан!")
             "ERROR_EMAIL_ALREADY_IN_USE" -> _createAccountResult.postValue("Email занят!")
             "Ошибка!" -> _createAccountResult.postValue("Ошибка!")
@@ -108,14 +109,15 @@ class ViewModelCreateAccount(private val createAccount: CreateAccountUseCase) : 
 
         if (firstNameValue.isEmpty()) {
             Log.i(TAG, "Create account: First name is empty!$firstNameValue")
-            _firstName.value = false
+            _firstNameValidate.value = false
 
         } else if (!FIRST_NAME_PATTERN.matcher(firstNameValue).matches()) {
             Log.i(TAG, "Create account: first name not Pattern!")
-            _firstName.value = false
+            _firstNameValidate.value = false
         } else {
             Log.i(TAG, "Create account: first name is correct!")
-            _firstName.value = true
+            firstName = firstNameValue
+            _firstNameValidate.value = true
         }
     }
 
